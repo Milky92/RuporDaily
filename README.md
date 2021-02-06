@@ -1,2 +1,2 @@
-# TraveStore
-first project
+# RP.Core
+This core for RuporDaily project
