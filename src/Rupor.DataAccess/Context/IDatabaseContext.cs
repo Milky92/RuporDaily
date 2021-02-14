@@ -6,7 +6,7 @@ using Rupor.Domain.Models;
 
 namespace Rupor.DataAccess.Context
 {
-    public interface IDatabaseContext : IDisposable, IAsyncDisposable
+    public interface IDatabaseContext : IDisposable
     {
         #region collections
 
