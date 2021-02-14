@@ -10,7 +10,7 @@ namespace Rupor.DataAccess.Context
     {
         #region collections
 
-        IEntityCollection<Topics> Topics { get; set; }
+        IEntityCollection<Topic> Topics { get; set; }
 
         #endregion
 

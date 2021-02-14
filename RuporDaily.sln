@@ -11,6 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rupor.DataAccess.RavenDb", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rupor.Domain", "src\Rupor.Domain\Rupor.Domain.csproj", "{3A5D6244-F4FD-41B6-A53F-475168473F5F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - API", "0 - API", "{E42E133F-DDCF-415E-930E-F59A8AF2D170}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Business", "2 - Business", "{343071CF-CC0D-4E9B-A2F8-4F0676CEAD46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rupor.Business", "Rupor.Business\Rupor.Business.csproj", "{86C29873-774F-49D4-80DE-85708CEF5169}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +39,17 @@ Global
 		{3A5D6244-F4FD-41B6-A53F-475168473F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A5D6244-F4FD-41B6-A53F-475168473F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A5D6244-F4FD-41B6-A53F-475168473F5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86C29873-774F-49D4-80DE-85708CEF5169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86C29873-774F-49D4-80DE-85708CEF5169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86C29873-774F-49D4-80DE-85708CEF5169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86C29873-774F-49D4-80DE-85708CEF5169}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1F06A843-497F-415D-A392-3BEA23459816} = {E42E133F-DDCF-415E-930E-F59A8AF2D170}
+		{86C29873-774F-49D4-80DE-85708CEF5169} = {343071CF-CC0D-4E9B-A2F8-4F0676CEAD46}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {00E1C95C-7708-4C5B-89EA-31F7128D18C1}
