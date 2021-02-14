@@ -22,7 +22,7 @@ namespace Rupor.DataAccess.RavenDb.Context
         private readonly RavenDatabase _db;
         #region collections
 
-        public IEntityCollection<Topics> Topics { get; set; }
+        public IEntityCollection<Topic> Topics { get; set; }
 
         #endregion
 

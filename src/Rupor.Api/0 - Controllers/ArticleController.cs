@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Rupor.Api.Models.Article;
+using Rupor.Business.Topics.Commands.RequestModels;
 
 namespace Rupor.Api.Controllers
 {
@@ -10,6 +12,13 @@ namespace Rupor.Api.Controllers
     [ApiController]
     public class ArticleController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public ArticleController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetArticles([FromQuery] ArticleFilterModel model)
         {
@@ -25,7 +34,9 @@ namespace Rupor.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] ArticleCreateModel model)
         {
-            return Created(nameof(GetArticle), new { t = 1 });
+            
+
+            return Created(nameof(Create), new { t = 1 });
         }
 
         [HttpPut("{id}")]
