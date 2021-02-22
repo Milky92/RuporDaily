@@ -5,32 +5,41 @@ using Microsoft.Extensions.Options;
 using Microsoft.Extensions.DependencyInjection;
 using Raven.Client.Documents.Changes;
 using Raven.Client.Documents.Session;
-using Rupor.DataAccess.Collections;
-using Rupor.DataAccess.Context;
 using Rupor.DataAccess.RavenDb.Settings;
 using Rupor.DataAccess.RavenDb.Utils;
-using Rupor.Domain.Models;
+using Raven.Client.Documents;
+using System.Linq;
+using Raven.Client;
+using Rupor.DataAccess.RavenDb.Collections;
 
 namespace Rupor.DataAccess.RavenDb.Context
 {
-    public class RaveDbContext : IDatabaseContext
+    public class RavenDbContext : IDisposable
     {
         private bool disposed = false;
 
         private readonly DatabaseOptions _dbOptions;
         private readonly IAsyncDocumentSession _asyncSession;
         private readonly RavenDatabase _db;
-        #region collections
+       
+        //#region collections
 
-        public IEntityCollection<Topic> Topics { get; set; }
+        ////public IEntityCollection<Topic> Topics { get; set; }
 
-        #endregion
-
-        protected RaveDbContext(IServiceProvider serviceProvider,IOptions<DatabaseOptions> options)
+        //#endregion
+       
+        protected RavenDbContext(IServiceProvider serviceProvider,IOptions<DatabaseOptions> options)
         {
             _dbOptions = options.Value;
             _db = serviceProvider.GetService<RavenDatabase>() ?? throw new ArgumentNullException(nameof(serviceProvider));
             _asyncSession = _db.IntializeAsync(this).GetAwaiter().GetResult();
+            InitCollections();
+        }
+
+        protected RavenDbContext(RavenTransaction transaction)
+        {
+            _asyncSession = transaction.DocumentStore.OpenAsyncSession();
+            InitCollections();
         }
 
         public RavenTransaction BeginTransaction()
@@ -56,5 +65,18 @@ namespace Rupor.DataAccess.RavenDb.Context
 
             disposed = true;
         }
+
+        private void InitCollections()
+        {
+            var collections = GetType().GetProperties()
+                  .Where(p => p.PropertyType.IsGenericType &&
+                            p.PropertyType.GetGenericTypeDefinition() == typeof(EntityCollection<>)
+                  )
+                  .ToList();
+
+             collections.ForEach(p => p.SetValue(this, Activator.CreateInstance(p.PropertyType, _asyncSession)));
+
+        }
+
     }
 }

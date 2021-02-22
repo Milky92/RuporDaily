@@ -35,7 +35,7 @@ namespace Rupor.Api._0___Controllers
         {
              var r =await _mediator.Send(model);
 
-            return Created(nameof(Create), new { t = 1 });
+            return Created(nameof(Create), new { r });
         }
     }
 }

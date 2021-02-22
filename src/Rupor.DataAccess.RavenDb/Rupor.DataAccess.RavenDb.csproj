@@ -5,10 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Rupor.DataAccess\Rupor.DataAccess.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
       <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
       <PackageReference Include="RavenDB.Client" Version="5.1.2" />
     </ItemGroup>
