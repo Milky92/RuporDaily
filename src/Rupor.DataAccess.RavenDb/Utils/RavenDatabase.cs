@@ -5,6 +5,7 @@ using Raven.Client.Documents.Operations.Expiration;
 using Raven.Client.Documents.Session;
 using Raven.Client.ServerWide;
 using Raven.Client.ServerWide.Operations;
+
 using Rupor.DataAccess.RavenDb.Collections;
 using Rupor.DataAccess.RavenDb.Context;
 using Rupor.DataAccess.RavenDb.Settings;
@@ -17,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace Rupor.DataAccess.RavenDb.Utils
 {
-    public class RavenDatabase : IRavenDatabase
+    public class RavenDatabase 
     {
         private readonly DatabaseOptions _options;
         private IDocumentStore _store;
@@ -28,7 +29,7 @@ namespace Rupor.DataAccess.RavenDb.Utils
             _options = options.Value;
         }
 
-        public async Task<IAsyncDocumentSession> IntializeAsync(RaveDbContext context)
+        public async Task<IAsyncDocumentSession> IntializeAsync(RavenDbContext context)
         {
             if (Interlocked.Increment(ref _initCount) <= 1)
             {
@@ -61,7 +62,7 @@ namespace Rupor.DataAccess.RavenDb.Utils
         public RavenTransaction BeginTransaction()
             => RavenTransaction.Create(_store);
 
-        private IDocumentStore CreateStore(RaveDbContext context)
+        private IDocumentStore CreateStore(RavenDbContext context)
         {
             var collections = context.GetType().GetProperties()
                 .Where(p => p.PropertyType.IsGenericType &&
@@ -86,5 +87,9 @@ namespace Rupor.DataAccess.RavenDb.Utils
             }.Initialize();
 
         }
+
+      
+
+       
     }
 }

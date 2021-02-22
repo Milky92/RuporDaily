@@ -12,21 +12,22 @@ namespace Rupor.Business.Topics.Commands.Handlers
 {
     public class CreateTopicHandler : IRequestHandler<CreateTopicRequest>
     {
-        private readonly IDataContext _dataContext;
-        public CreateTopicHandler(IDataContext dataContext)
+        private readonly IDatabaseContext _context;
+        public CreateTopicHandler(IDatabaseContext context)
         {
-            _dataContext = dataContext;
+            _context = context;
         }
+
         public async Task<Unit> Handle(CreateTopicRequest request, CancellationToken cancellationToken)
         {
-            using (var context = _dataContext.GetContext())
+            //using (var context = _dataContext.GetContext())
             {
-                await context.Topics.AddAsync(new Domain.Models.Topic
+                await _context.Topics.AddAsync(new Domain.Models.Topic
                 {
                     Name = request.Name
                 }, cancellationToken);
 
-                await context.SaveChangesAsync(cancellationToken);
+                await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }

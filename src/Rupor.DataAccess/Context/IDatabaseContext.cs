@@ -1,16 +1,18 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Rupor.DataAccess.Collections;
+using Rupor.DataAccess.RavenDb.Collections;
 using Rupor.Domain.Models;
 
 namespace Rupor.DataAccess.Context
 {
-    public interface IDatabaseContext : IDisposable
+    public interface IDatabaseContext 
     {
         #region collections
 
-        IEntityCollection<Topic> Topics { get; set; }
+        EntityCollection<Topic> Topics { get; set; }
+
+        EntityCollection<Article> Articles { get; set; }
 
         #endregion
 

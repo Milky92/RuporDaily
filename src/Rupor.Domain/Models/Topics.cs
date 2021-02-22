@@ -7,5 +7,6 @@ namespace Rupor.Domain.Models
         public string Name { get; set; }
         public Picture Picture { get; set; }
         public string Description { get; set; }
+        
     }
 }
