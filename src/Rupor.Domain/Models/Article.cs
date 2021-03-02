@@ -13,7 +13,6 @@ namespace Rupor.Domain.Models
         public Picture TitlePicture { get; set; }
         public ICollection<Tag> Tags { get; set; }
         public ICollection<TopicInfo> Topics { get; set; }
-      
-        
+              
     }
 }
