@@ -9,6 +9,6 @@ namespace Rupor.Domain.Doc
     public class Metadata<TData>
         where TData : class, new()
     {
-
+         
     }
 }

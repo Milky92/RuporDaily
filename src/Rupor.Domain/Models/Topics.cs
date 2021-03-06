@@ -2,7 +2,7 @@ using Rupor.Domain.References;
 
 namespace Rupor.Domain.Models
 {
-    public class Topic : BaseModel
+    public class Topic : Doc.BaseDocument
     {
         public string Name { get; set; }
         public Picture Picture { get; set; }
